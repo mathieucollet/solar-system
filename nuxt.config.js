@@ -42,17 +42,7 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    proxy: true,
-  },
-
-  // Proxy
-  proxy: {
-    '/ss': {
-      target: 'https://api.le-systeme-solaire.net/rest/',
-      pathRewrite: { '^/ss': '/' },
-    },
-  },
+  axios: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
