@@ -1,34 +1,20 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">solar-system</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    <div v-for="planet in planets" :key="planet.id">{{ planet.id }}</div>
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
+<script>
+import Planet from '~/models/Planet'
 
-export default Vue.extend({})
+export default {
+  name: 'Index',
+  async asyncData() {
+    const response = await Planet.orderBy('id').first()
+    const planets = response.bodies
+    return { planets }
+  },
+}
 </script>
 
 <style>
@@ -40,10 +26,6 @@ export default Vue.extend({})
 .container {
   margin: 0 auto;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
 }
 
 .title {

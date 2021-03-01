@@ -20,7 +20,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~/plugins/vue-api-query'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -44,12 +44,15 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    proxy: true,
+  },
 
-  // PWA module configuration: https://go.nuxtjs.dev/pwa
-  pwa: {
-    manifest: {
-      lang: 'en',
+  // Proxy
+  proxy: {
+    '/ss': {
+      target: 'https://api.le-systeme-solaire.net/rest/',
+      pathRewrite: { '^/ss': '/' },
     },
   },
 
